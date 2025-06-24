@@ -1,90 +1,100 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📱 Proyecto React Native
 
-# Deben tener instalado el cli de react native
+Este es un nuevo proyecto de [**React Native**](https://reactnative.dev), creado usando [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-* @react-native-community/cli
+## 📋 Prerequisitos
 
+Necesitas tener instalado el CLI de React Native:
 
-## Step 1: Instalar dependencias
+```bash
+npm install -g @react-native-community/cli
+```
 
-### 1) Primero instalar dependencias:
+## 🚀 Comenzando
 
-```sh
-# Using npm
+### Instalar dependencias
+
+```bash
 npm install
- 
 ```
 
-## Step 2: Preparar el entorno
+### ⚙️ Configuración del entorno
 
-### 1) Copiar el archivo .env.template y colocar la key en el parametro ID_CLIENT_WEB
+#### 1. Configurar variables de entorno
 
-- Me piden ese value por privado.
+Copia el template del environment y agrega tu client ID:
 
-```sh
-# Command
-cp .env.emplate .env
- 
+```bash
+cp .env.template .env
 ```
 
+> **Nota:** Solicita el valor de `ID_CLIENT_WEB` de forma privada
 
-### 2) Generar las key sha-1 y sha-256: 
-- Cambiar 'filename' y 'aliasname' con los nombres que van a usar. Guardenselos en algun lugar para usarlos luego.
-- Seguir los pasos rellenando los datos cuando se ejecute el comando, les pedirá que rellenen un formulario.
+#### 2. Generar claves del keystore
 
-```sh
-# Command
+Genera las claves SHA-1 y SHA-256 (reemplaza `filename` y `aliasname` con tus nombres preferidos):
+
+```bash
 keytool -genkey -v -keystore filename.keystore -alias aliasname -keyalg RSA -keysize 2048 -validity 10000
- 
 ```
 
+> **Importante:** Guarda las claves generadas en un lugar seguro para uso posterior
 
-### 3) Copiar el archivo /android/env.template.gradle y rellenar los datos que pusieron en el formulario.
+#### 3. Configurar entorno Android
 
-```sh
-# Command
-cp ./android/env.template.gradle ./android/env.gradle 
- 
+Copia y completa el template del entorno Android:
+
+```bash
+cp ./android/env.template.gradle ./android/env.gradle
 ```
-- Debería quedar algo asi: Les recomiendo usar la misma password en store y key.
+
+Actualiza el archivo con la información de tu keystore:
 
 ```gradle
-# File
-    MYAPP_UPLOAD_STORE_FILE = './android/app/filename.keystore'
-    MYAPP_UPLOAD_KEY_ALIAS = 'alias'
-    MYAPP_UPLOAD_STORE_PASSWORD = 'storePassword'
-    MYAPP_UPLOAD_KEY_PASSWORD = 'keyPassword'
+MYAPP_UPLOAD_STORE_FILE = './android/app/filename.keystore'
+MYAPP_UPLOAD_KEY_ALIAS = 'alias'
+MYAPP_UPLOAD_STORE_PASSWORD = 'storePassword'
+MYAPP_UPLOAD_KEY_PASSWORD = 'keyPassword'
 ```
 
+> **Recomendación:** Usa la misma contraseña para store y key
 
-### 4) Una vez configurado eso copiar las key sha-1 y sha-256 y pasarmelas por privado.
+#### 4. Extraer fingerprints del keystore
 
-```sh
-# Command
+Obtén tus claves SHA-1 y SHA-256:
+
+```bash
 keytool -list -v -keystore ./android/app/filename.keystore -alias alias -storepass storePassword -keypass keyPassword
 ```
-- Este comando va a mostrarles las key para que copien.
 
+> **Acción requerida:** Envía estas claves de forma privada para la configuración de Firebase
 
-### 5) Una vez hecho eso me piden por privado el archivo google-services.json
+#### 5. Configuración de Google Services  
 
-- Este deberán prosicionarlo dentro de ./android/app/ por ahora, cuando trabajemos con dispositivos "ios" agregamos las demas configuraciones.
+> **Acción requerida:** Solicita el archivo `google-services.json` de forma privada y colócalo en `./android/app/`
 
+## ▶️ Ejecutar el proyecto
 
-## Step 3: Iniciar el proyecto
+### Desarrollo Android
 
-### Android
-- Ejecuten npx en una terminal
-```sh
-# Usen npx en una terminal para levantar el Metro Bundler
+Inicia Metro Bundler en una terminal:
+
+```bash
 npx react-native start
 ```
-- Ejecuten npm en otra terminal
-```sh
-# Usen npm en otra terminal para compilar y instalar el app en su emulador/dispositivo Android que van a usar.
+
+Compila y ejecuta en Android en otra terminal:
+
+```bash
 npm run android
 ```
-- Depende de como esté su entorno configurado: Yo uso esto para levantar mis proyectos a lo mejor su entorno solo pida usar :> npm run android
 
+## 📝 Notas importantes
 
-# Si van a hacer alguna configuración de plugins o que tenga que ver con el nivel de ./android/* me avisan para revisar.
+- La configuración de iOS se agregará cuando sea necesaria
+- Para cualquier configuración a nivel Android (`./android/*`), notifica para revisión
+- La configuración del entorno puede variar según tu setup de desarrollo
+
+## 💬 ¿Necesitas ayuda?
+
+Si encuentras algún problema con la configuración o necesitas asistencia con configuraciones de plugins, no dudes en contactar.
